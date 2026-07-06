@@ -1,12 +1,18 @@
 import express from "express";
 import cors from "cors";
-
+import cookieParser from "cookie-parser";
 
 const app = express();
 
 //   basic config       //
 app.use(express.json({limit: '16kb'}));
 app.use(express.urlencoded({limit: '16kb'}));
+
+app.use(cookieParser())
+
+
+
+
 
 //  cors config        //
 app.use(cors({
@@ -19,9 +25,11 @@ app.use(cors({
 // import routes //
 
 import healthCheckRoutes from "./routes/healthcheck.routes.js";
+import authRoutes from "./routes/auth.routes.js";
 
-app.get('/api/v1/healthcheck', healthCheckRoutes);
-
+//  routes config      //
+app.use("/api/v1/healthcheck", healthCheckRoutes);
+app.use("/api/v1/auth", authRoutes); 
 
 
 app.get('/', (req, res) => {
