@@ -26,11 +26,12 @@ app.use(cors({
 
 import healthCheckRoutes from "./routes/healthcheck.routes.js";
 import authRoutes from "./routes/auth.routes.js";
+import projectRouter from "./routes/project.routes.js";
 
 //  routes config      //
 app.use("/api/v1/healthcheck", healthCheckRoutes);
 app.use("/api/v1/auth", authRoutes); 
-
+app.use("/api/v1/projects", projectRouter);
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
